@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="se.android.worddrop.PlayerManagmentActivity"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/choosePlayer"
+        android:id="@+id/tvChoosePlayer"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/existingPlayer"
+        android:id="@+id/tvExistingPlayer"
+        android:layout_below="@+id/tvChoosePlayer"
+        android:layout_alignLeft="@+id/tvChoosePlayer"
+        android:layout_marginTop="20dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerExistingPlayers"
+        android:layout_below="@+id/tvExistingPlayer"
+        android:layout_alignLeft="@+id/tvExistingPlayer"
+        android:layout_marginTop="20dp"
+
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/newPlayer"
+        android:id="@+id/tvNewPlayer"
+        android:layout_below="@+id/spinnerExistingPlayers"
+        android:layout_alignLeft="@+id/spinnerExistingPlayers"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eTxtPlayerName"
+        android:layout_below="@+id/tvNewPlayer"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nextBtn"
+        android:id="@+id/btnNext"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/eTxtPlayerName"
+        android:layout_alignEnd="@+id/eTxtPlayerName"
+        android:background="@drawable/buttonstyle"
+        android:textColor="@color/white"
+        />
+</RelativeLayout>
