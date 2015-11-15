@@ -1,7 +1,7 @@
 # Word-Drop-Game
 This is an Android game.
 
-Features and developers :
+Features:
 Player Management and Game Modes
 Game Scoring and power up management
 Power up - Scrambling board
