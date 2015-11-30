@@ -19,10 +19,14 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.*;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
@@ -59,7 +63,7 @@ public class PlayGameActivity extends AppCompatActivity implements View.OnTouchL
     int shrinkLetterFlag = 0;
     int movesCount = 0;
     private Set<String> deleteColorButtonSet =new HashSet<String>();
-
+    private List<String> swipedWords = new ArrayList<String>();    //Change Request : Show a list of swipped words. - Pratik Sanghvi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +122,15 @@ public class PlayGameActivity extends AppCompatActivity implements View.OnTouchL
             tvMovesOrTime.setText(movesCount + "");
         }
 
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        if(gameMode.equals("TIMED")) {
+            //timer.cancel();
+            pauseTimer=true;
+        }
     }
 
     @Override
@@ -360,6 +373,7 @@ public class PlayGameActivity extends AppCompatActivity implements View.OnTouchL
                         Tile t[][]=grid.refillGrid(btnIdsSwipped);
                         setGridCells(t,gridWidth);
                         validWordsCount = validWordsCount + 1;
+                        swipedWords.add(wordFormed.toLowerCase());  //Change Request : Show a list of swipped words. - Pratik Sanghvi
                         updateScore(btnIdsSwipped.size());
                     }
                 }
@@ -470,6 +484,12 @@ public class PlayGameActivity extends AppCompatActivity implements View.OnTouchL
         finish();
     }
 
+    //Change Request
+    public void btnShowWordsClick(View view) {
+        System.out.println("Number of words formed "+swipedWords.size());
+        showSwippedWords(swipedWords);
+    }
+
     public void btnScrambleClick(View view) {
         int cntPowerCount = powerup.getScrambleCnt();
         if (cntPowerCount > 0) {
@@ -556,6 +576,7 @@ public class PlayGameActivity extends AppCompatActivity implements View.OnTouchL
                         powerup.setScrambleCnt(cntPowerCount - 1);
                         TextView tvScramble = (TextView) findViewById(se.android.worddrop.R.id.PowerUp0Cnt);
                         tvScramble.setText(Integer.toString(cntPowerCount - 1));
+                        pauseTimer = false;
                     }
                 });
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.No),
@@ -644,5 +665,28 @@ public class PlayGameActivity extends AppCompatActivity implements View.OnTouchL
                     }
                 });
         alertDialog.show();
+    }
+
+    //Change Request
+    private void showSwippedWords(List<String> lstSwippedWords)
+    {
+        pauseTimer=true;
+        //AlertDialog alertDialog = new AlertDialog.Builder(PlayGameActivity.this).create();
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlayGameActivity.this);
+        alertDialog.setCancelable(false);
+        alertDialog.setTitle(getString(R.string.swippedWordsLst));
+        alertDialog.setItems(lstSwippedWords.toArray(new CharSequence[lstSwippedWords.size()]), null);
+        alertDialog.setNegativeButton(getString(R.string.Ok),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        pauseTimer = false;
+                    }
+                });
+        AlertDialog alert=alertDialog.create();
+        alert.show();
+        int[] screenSize=getScreenSize();
+        System.out.println("width "+screenSize[0]+"\nheight "+screenSize[1]);
+        alert.getWindow().setLayout(screenSize[0] - 200, screenSize[1]/2);
+        alert.getWindow().setGravity(Gravity.CENTER);
     }
 }

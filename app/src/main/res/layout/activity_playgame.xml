@@ -348,7 +348,7 @@
         <TextView
             android:layout_width="190dp"
             android:layout_height="match_parent"
-            android:text="Moves"
+            android:text="@string/moves"
             android:textAlignment="center"
             android:textSize="20dp"
             android:layout_weight="1"
@@ -483,5 +483,19 @@
         android:layout_alignLeft="@+id/gridview"
         android:layout_alignStart="@+id/gridview"
         android:textStyle="bold" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="@string/showWordsBtn"
+        android:id="@+id/button"
+        android:layout_above="@+id/gridview"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/buttonstyle"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:layout_marginRight="10dp"
+        android:onClick="btnShowWordsClick"/>
 
 </RelativeLayout>

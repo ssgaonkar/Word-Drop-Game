@@ -26,7 +26,7 @@
     <string name="playAgain">Play Again</string>
     <string name="home">Home</string>
     <string name="exit">Exit</string>
-    <string name="lastSwipedWord">Last Swipped Word: </string>
+    <string name="lastSwipedWord">Last Swiped Word: </string>
     <string name="newUserCreated">New user created!</string>
     <string name="noUserSelected">No User Selected</string>
     <string name="noUserSelectedMsg">No User is selected. Please select a user or create a new one.</string>
@@ -56,4 +56,6 @@
     <string name="sorryScramblePower">Sorry, You Don\'t have enough score to purchase Scramble power up!</string>
     <string name="sorryDeleteColorPower">Sorry, You Don\'t have enough score to purchase Delete Color power up!</string>
     <string name="sorryShrinkLetterPower">Sorry, You Don\'t have enough score to purchase Shrink Letter power up!</string>
+    <string name="swippedWordsLst">Swiped Words</string>
+    <string name="showWordsBtn">Show Words</string>
 </resources>
